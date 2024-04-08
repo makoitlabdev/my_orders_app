@@ -1,0 +1,97 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: My Orders
+            description: My orders app!
+            version: 1.0.0
+
+        components:
+            schemas:
+                CreateOrder:
+                    type: object
+                    properties:
+                        name:
+                            type: string
+                        deliveryAddress:
+                            type: string
+                        deliveryOption:
+                            type: string
+                        deliveryDate:
+                            type: string
+                            format: date-time
+                        orderItems:
+                            type: array
+                            items:
+                                type: object
+                                properties:
+                                    itemId:
+                                        type: integer
+                                    quantity:
+                                        type: integer
+
+                GetOrdersData:
+                    type: object
+                    additionalProperties: false
+                    properties:
+                        id:
+                            type: integer
+                        delivery_address:
+                            type: string
+                        delivery_date:
+                            type: object
+                            properties:
+                                date:
+                                    type: string
+                                    format: date-time
+                                timezone_type:
+                                    type: integer
+                                timezone:
+                                    type: string
+                        order_items:
+                            type: array
+                            items:
+                                type: object
+                                properties:
+                                    item_id:
+                                        type: integer
+                                    item_name:
+                                        type: string
+                                    quantity:
+                                        type: integer
+                        status:
+                            type: string
+
+                UpdateOrder:
+                    type: object
+                    properties:
+                        orderId:
+                            type: integer
+                        status:
+                            type: string
+                            enum: ["processing", "delivered"]
+
+            responses:
+                GetOrdersDataResponse:
+                    description: 'Get Orders data response'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetOrdersData'
+
+                CreateOrderResponse:
+                    description: 'Create Order data response'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateOrder'
+
+                UpdateOrderResponse:
+                    description: 'Update Order data response'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateOrder'
+
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc

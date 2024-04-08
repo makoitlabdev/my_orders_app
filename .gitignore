@@ -1,0 +1,17 @@
+/.env.local
+/.env.*.local
+/public/bundles/
+/var/
+/vendor/
+/.idea/
+/phpunit.xml
+.phpunit.result.cache
+/.php_cs.cache
+/.phpcs-cache
+.DS_Store
+composer.phar
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+/junit.xml
+node_modules/*

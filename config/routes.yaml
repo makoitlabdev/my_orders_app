@@ -1,0 +1,34 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+# api_doc_swagger_ui:
+#     path: '/api/doc'
+#     controller: 'nelmio_api_doc.controller.swagger_ui'
+
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+# app.redocly:
+#     path: /api/doc
+#     methods: GET
+#     defaults: { _controller: nelmio_api_doc.controller.redocly }
+
+# app.swagger:
+#     path: /api/doc.json
+#     methods: GET
+#     defaults: { _controller: nelmio_api_doc.controller.swagger }
+
+post_orders:
+    path: /api/orders
+    methods: ['POST']
+    controller: App\Controller\OrderController::create
+
+get_order:
+    path: /api/orders
+    methods: ['GET']
+    controller: App\Controller\OrderController::show
